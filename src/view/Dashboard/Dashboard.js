@@ -22,7 +22,8 @@ const Dashboard = () => {
       const response = await axios.get(endpoint, { params });
       if (response.data.length > 0) {
         const location = response.data[0];
-        setLatLng({ lat: location.lat, lng: location.lng });
+        console.log(location);
+        setLatLng({ lat: location.lat, lng: location.lon });
       }
     } catch (err) {
       console.log(err);
@@ -61,6 +62,23 @@ const Dashboard = () => {
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <MyMap latLng={latLng} />
+      </div>
+      <div
+        style={{
+          border: "4px solid black",
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "20px",
+        }}
+      >
+        <span>
+          <b>Latitude=</b>
+          {latLng?.lat}
+        </span>
+        <span>
+          <b> Longitude=</b>
+          {latLng?.lng}
+        </span>
       </div>
     </div>
   );
