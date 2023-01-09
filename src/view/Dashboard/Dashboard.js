@@ -46,18 +46,22 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Autocomplete
-        id="country-autocomplete"
-        options={optionCountry}
-        getOptionLabel={(option) => option}
-        onChange={(event, newValue) => {
-          dispatch(setDisplay(newValue));
-        }}
-        renderInput={(params) => (
-          <TextField {...params} label="Country" variant="outlined" />
-        )}
-      />
-      <MyMap latLng={latLng} />
+      <div style={{ margin: 20 }}>
+        <Autocomplete
+          id="country-autocomplete"
+          options={optionCountry}
+          getOptionLabel={(option) => option}
+          onChange={(event, newValue) => {
+            dispatch(setDisplay(newValue));
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label="Country" variant="outlined" />
+          )}
+        />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <MyMap latLng={latLng} />
+      </div>
     </div>
   );
 };
