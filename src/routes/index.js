@@ -1,19 +1,11 @@
 import React from "react";
-import { useRoutes } from "react-router-dom";
 import Dashboard from "../view/Dashboard/Dashboard";
+import { Route, Routes } from "react-router-dom";
 
-const Router = () => {
-  return useRoutes([
-    {
-      path: "display",
-      children: [
-        {
-          path: "data",
-          element: <Dashboard />,
-        },
-      ],
-    },
-  ]);
-};
+const Router = () => (
+  <Routes>
+    <Route path="/" element={<Dashboard />} />
+  </Routes>
+);
 
 export default Router;
