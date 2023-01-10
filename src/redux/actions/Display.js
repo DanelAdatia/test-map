@@ -13,3 +13,10 @@ export const setOptions = (optionCountry) => {
     payload: optionCountry,
   };
 };
+
+export const setLatLng = (latLng) => {
+  return {
+    type: ActionTypes.SET_LAT_LNG,
+    payload: latLng,
+  };
+};

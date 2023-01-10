@@ -3,17 +3,16 @@ import React, { useState } from "react";
 import countries from "countries-list";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDisplay, setOptions } from "../../redux/actions/Display";
+import { setDisplay, setLatLng, setOptions } from "../../redux/actions/Display";
 import axios from "axios";
 import MyMap from "./components/Mapp";
 
 const Dashboard = () => {
-  const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
-
   const dispatch = useDispatch();
 
   const optionCountry = useSelector((state) => state.displayData.optionCountry);
   const display = useSelector((state) => state.displayData.display);
+  const latLng = useSelector((state) => state.displayData.latLng);
 
   const getTheMap = async (display) => {
     try {
@@ -23,7 +22,7 @@ const Dashboard = () => {
       if (response.data.length > 0) {
         const location = response.data[0];
         console.log(location);
-        setLatLng({ lat: location.lat, lng: location.lon });
+        dispatch(setLatLng({ lat: location.lat, lng: location.lon }));
       }
     } catch (err) {
       console.log(err);
@@ -61,7 +60,7 @@ const Dashboard = () => {
         />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <MyMap latLng={latLng} />
+        <MyMap />
       </div>
       <div
         style={{
